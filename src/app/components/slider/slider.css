@@ -1,0 +1,83 @@
+
+
+.Slider {
+  position: relative;
+  width: 100%;
+  max-width: 1500px; /* Keep max width same as image */
+  height: 500px;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Image {
+    width: 1500px;
+    height: 500px;  
+    display: block;  
+    margin:0 auto; 
+    object-fit: cover; 
+  } 
+
+  .slide {
+    position: absolute;
+    opacity: 1;
+  }
+
+  .slide-hidden{
+    display: none;
+  }
+
+  .ArrowLeft, .ArrowRight {
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: white;
+    filter: drop-shadow(0px 0px 5px #555);
+    z-index: 10;
+  }
+  
+  .ArrowLeft {
+    left: 20px;
+  }
+  
+  .ArrowRight {
+    right: 20px;
+  }
+
+
+  .Dots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%; /* Centers the dots horizontally */
+    transform: translateX(-70%);
+  
+  }
+
+  .Dot {
+    background-color: white; 
+    height: 1rem; 
+    width: 1rem;  
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 5px #555;
+    margin: 0 0.3rem; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  
+  .Dot:hover {
+    transform: scale(1.2); 
+  }
+
+  .dot-inactive{
+    background-color: grey;
+  }

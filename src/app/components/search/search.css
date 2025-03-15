@@ -1,0 +1,32 @@
+.searchBar{
+    position: absolute;
+    left: 450px;
+    top: 11%;
+    transform: translateY(-70%);
+    font-size: 30px;
+    border-radius: 15px; 
+    border-color: black;
+
+    padding:5px;
+    border: 2px solid #ccc;
+    width:600px;
+}
+
+.searchIcon{
+    position: absolute;
+    right: 330px;
+    top: 10%;
+    transform: translateY(-70%);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+::placeholder {
+    font-size: 25px;
+    opacity: 1; 
+  }
+
+.searchTxt{
+    font-family: Garamond, serif;
+    font-size: 15px;
+}

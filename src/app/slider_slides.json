@@ -1,0 +1,35 @@
+{
+    "slides" : [
+        {
+            "src": "/ts.jpg",
+            "alt" : "Taylor Swift",
+            "className":"Image"
+        },
+        {
+            "src": "ag.jpg",
+            "alt" : "Ariana Grande",
+            "className":"Image"
+        },
+        {
+            "src": "/lg.png",
+            "alt" : "Lady Gaga",
+            "className":"Image"
+        },
+        {
+            "src": "/nm1.jpg",
+            "alt" : "Nicki Minaj",
+            "className":"Image"
+        },
+        {
+            "src": "/ri.jpg",
+            "alt" : "Rihanna",
+            "className":"Image"
+        },
+        {
+            "src": "/wknd.jpg",
+            "alt" : "Taylor Swift",
+            "className":"Image"
+        }
+    ]
+}
+

@@ -1,0 +1,16 @@
+.BagIcon{
+    position: absolute;
+    right: 110px;
+    top: 10%;
+    transform: translateY(-70%);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.TextBag{
+    position: absolute;
+    font-family: Garamond, serif;
+    right:115px;
+    top: 12%;
+    font-size: 15px;
+}

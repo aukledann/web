@@ -1,0 +1,74 @@
+.TextFollow, .TextContact{
+    font-weight: bold;
+    position: absolute;
+    font-family: Garamond, serif;
+    font-size: 30px;
+    color: black;
+    top:165%;
+    padding-bottom: 25px;
+}
+.TextFollow{
+    left:30px;
+}
+.TextContact{
+    right:170px;
+}
+
+
+.Instagram, .Facebook, .Pinterest{
+    position: absolute;
+    top: 175%;
+    transform: translateY(-70%);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.Phone, .Email, .Address{
+    position: absolute;
+    right: 290px;
+    transform: translateY(-70%);
+    font-size: 30px;
+}
+
+.Instagram{
+     left: 30px;
+}
+
+.Facebook{
+    left: 80px;
+}
+
+.Pinterest{
+    left: 130px;
+}
+
+.Phone, .phoneText{
+    top: 175%;
+}
+
+.Email, .emailText{
+    top: 180%;
+}
+
+.Address, .addressText{
+    top: 185%;
+}
+
+.phoneText, .emailText, .addressText{
+    position: absolute;
+    transform: translateY(-70%);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.phoneText{
+    right: 145px;
+}
+
+.emailText{
+    right: 70px;
+}
+
+.addressText{
+    right: 50px;
+}

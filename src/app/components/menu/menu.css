@@ -1,0 +1,17 @@
+.MenuIcon{
+    position: absolute;
+    left:30px;
+    top: 10%;
+    transform: translateY(-70%);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+.TextMenu{
+    position: absolute;
+    font-family: Garamond, serif;
+    left:30px;
+    top: 12%;
+    font-size: 15px;
+}
