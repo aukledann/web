@@ -8,13 +8,25 @@ import { SlCallEnd } from "react-icons/sl";
 import { SlMap } from "react-icons/sl";
 import { SlEnvolope } from "react-icons/sl";
 
+
 export default function SocialMedia(){
     return(
         <div>
             <p className="TextFollow">Follow Us:</p>
-            <SlSocialInstagram className="Instagram"/>
-            <SlSocialFacebook className="Facebook"/>
-            <SlSocialPintarest className="Pinterest"/>
+            
+            <a href="https://www.instagram.com/" target="_blank">
+                <SlSocialInstagram className="Instagram" />
+            </a>
+        
+
+            <a href="https://www.facebook.com/" target="_blank">
+                <SlSocialFacebook className="Facebook"/>
+            </a>
+            
+            <a href="https://www.pinterest.com/" target="_blank">
+                <SlSocialPintarest className="Pinterest"/>
+            </a>
+            
 
             <p className="TextContact">Contact Us:</p>
             <ul>

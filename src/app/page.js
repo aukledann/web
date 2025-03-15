@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import styles from "./page.module.css";
 import {Slider} from "./components/slider/slider"
@@ -9,11 +10,16 @@ import Menu from "./components/menu/menu.js"
 import AboutUs from "./components/about_us/about_us_text.js"
 import SocialMedia from "./components/social_media/social_media.js"
 
+import Link from "next/link";
+
 export default function Home() {
   const el = (
     <div>
         <h2 className={styles.Text} > MerchByAnn</h2>
-        <Menu></Menu>
+        <Menu>
+          
+        </Menu>
+
         <Search></Search>
         <Login></Login>
         <Bag></Bag>
@@ -21,6 +27,7 @@ export default function Home() {
         </Slider>
         <AboutUs></AboutUs>
         <SocialMedia></SocialMedia>
+  
     </div>
   )
   return el;
@@ -29,7 +36,6 @@ export default function Home() {
 
 // TODO
 
-//menu 
 //add products
 //individual product page
 //bag
@@ -37,9 +43,8 @@ export default function Home() {
 //search
 //wishlist?
 
-//slider must change images once every 10seconds
-//social media add links
-//move some images in slider (2,5,6)
+//slider must change images once every 10 seconds
+//move some images in slider down(2,5,6)
 
 //how does it look on mobile devices
 
