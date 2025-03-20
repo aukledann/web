@@ -1,11 +1,107 @@
-.home, .artists, .clothing, .allProducts{
+.home, .clothing, .allProducts{
     display: flex;
-    height: 90vh;
+    font-size: 25px;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
     font-family: Garamond, serif;
   }
+
+  .artistList{
+    padding-left:120px;
+    padding-top:30px;
+    left: 50px;
+
+  }
+  .artistNames{
+    cursor: pointer;
+    font-family: Garamond, serif;
+    font-size: 35px;
+    color: black;
+}
+
+.art-text{
+  display: flex;
+    font-family: Garamond, serif;
+    font-size: 25px;
+    justify-content: start;
+    align-items:center;
+    padding: 30px 0px 8px 16px;
+    list-style: none;
+    height: auto;
+}
+
+.art-text a{
+  text-decoration: none;
+  color:#f5f5f5;
+  font-family: Garamond, serif;
+  font-size: 25px;
+  display: inline-block;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.art-text a:hover{
+  background-color: #776666;
+}
+
+
+  .clothing-text{
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    margin-top: 30px;
+    text-align: center;
+    font-family: Garamond, serif;
+  }
+
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-each {
+  width: 300px;
+  height:350px;
+  cursor:pointer;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  background: #fff;
+}
+
+.product-each:hover {
+  transform: scale(1.05);
+}
+
+.product-each img {
+  width: 280px;
+  height: 250px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 10px 10px 0 0;
+}
+
+.product-each h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+  font-family: Garamond, serif;
+}
+
+.product-each p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+  font-family: Garamond, serif;
+}
 
 
   .Evrthng{
