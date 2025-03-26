@@ -1,15 +1,15 @@
 .searchBar{
     position: absolute;
-    left: 450px;
-    top: 11%;
-    transform: translateY(-70%);
+    left: 430px;
+    top: 500px;
+    transform: translateY(-230%);
     font-size: 30px;
     border-radius: 15px; 
     border-color: black;
-
     padding:5px;
     border: 2px solid #ccc;
-    width:600px;
+    width: 600px; 
+    max-width: 600px;
 }
 
 .searchIcon{

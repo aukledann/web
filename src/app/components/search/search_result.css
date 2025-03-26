@@ -1,0 +1,9 @@
+.search-result{
+    padding: 10px 20px;
+    font-family: Garamond, serif;
+    font-size: 25px;
+}
+
+.search-result:hover{
+    background-color: #efefef;
+}

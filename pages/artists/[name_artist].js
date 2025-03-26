@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './[name_artist].css'
 import Menu from "../../src/app/components/menu/menu.js"
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function ArtistPage() {
 
@@ -63,9 +64,11 @@ export default function ArtistPage() {
                 <div className='product-list'>
                   {products.map((item) =>(
                     <div key={item.prod_id} className='product-each'>
-                        <img src = {item.prod_img_url} alt="product-img"></img>
-                        <h2>{item.prod_name}</h2>
-                        <p>{item.prod_price}</p>
+                        <Link href={`/${item.prod_id}`}>
+                          <img src={item.prod_img_url} alt="product-img" />
+                          <h2>{item.prod_name}</h2>
+                          <p>${item.prod_price}</p>
+                      </Link>
                     </div>
                   ))}
                 </div>

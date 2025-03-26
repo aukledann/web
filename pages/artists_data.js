@@ -30,7 +30,7 @@ export const artists_data = [
     },
 
     {   name:"The Weeknd",
-        path:'artists/thee_weeknd',
+        path:'artists/the_weeknd',
         cName: 'art-text'
     }
 ]
