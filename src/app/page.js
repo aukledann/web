@@ -34,11 +34,14 @@ export default function Home() {
 }
 
 //Log in:
-//=sanitize user input when signing up
-//when new user signs up, its added to db customer
+//when loged in, login feature is not visible, only logout.
 //when user logged in, there should be option to view/change user info
+//sanitize user input when signing up
+//when new user signs up or logs in, modal window disapears.
+//when user signs up it must be automatically loged in.
 
 //Bag: add products to the bag, view bag, checkout
+//when product added to the bag, there is number on a bag that represents number of products inside it
 
 //For Artist:
 // for each artis page before products: big picture of them

@@ -2,6 +2,7 @@
 
 .Slider {
   position: relative;
+  top:-50px;
   width: 100%;
   max-width: 1500px; /* Keep max width same as image */
   height: 500px;

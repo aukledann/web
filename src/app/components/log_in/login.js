@@ -7,8 +7,8 @@ import  {SlKey}  from "react-icons/sl";
 import { SlClose } from "react-icons/sl";
 import { useState, useEffect } from "react";
 import { Siemreap } from "next/font/google";
-import SignUp from "./SignUp";
 import Link from "next/link";
+import axios from "axios";
 
 
 export default function Login(){
@@ -21,7 +21,6 @@ export default function Login(){
         setSignUpBar(false);
     };
 
-    
     const showSignUpBar = () => {
         setSignUpBar(!signUpBar);
         setLoginBar(false); 
@@ -39,7 +38,88 @@ export default function Login(){
             document.body.style.height = 'auto'; 
         }
     });
+
+
+
+    const [emailRegister, setEmailRegister] = useState('');
+    const [passwordRegister, setPasswordRegister] = useState('');
+    const [nameRegister, setNameRegister] = useState('');
+    const [surnameRegister, setSurnameRegister] = useState('');
+    const [ageRegister, setAgeRegister] = useState('');
+    const [addressRegister, setAddressRegister] = useState('');
+    const [phoneRegister, setPhoneRegister] = useState('');
+
+
+    const register = async () => {
+        if (!nameRegister || !surnameRegister || !ageRegister || !addressRegister || !phoneRegister || !emailRegister || !passwordRegister) {
+            alert("All fields are required.");
+            return;  
+        }
+
+        try {
+            const response = await axios.post("/api/register", {
+                name: nameRegister,
+                surname: surnameRegister,
+                age: parseInt(ageRegister),
+                address: addressRegister,
+                phone: phoneRegister,
+                email: emailRegister,
+                password: passwordRegister
+            });
+
+            alert("Registration successful!");
+        
+            setNameRegister('');
+            setSurnameRegister('');
+            setAgeRegister('');
+            setAddressRegister('');
+            setPhoneRegister('');
+            setEmailRegister('');
+            setPasswordRegister('');
+
+        } catch (error) {
+            console.error("Error registering user:", error.response?.data || error.message);
+            alert(error.response?.data?.error || "Error registering. Please try again.");
+        }
+
+    }
+
+
+    const [emailLogin, setEmailLogin] = useState('');
+    const [passwordLogin, setPasswordLogin] = useState(''); 
+
+    const [loginStatus, setLoginStatus] = useState('');
+
+    const log = async() =>{
+        if (!emailLogin || !passwordLogin) {
+            alert("All fields are required.");
+            return;  
+        }
+
+        try {
+            await axios.post("/api/login", {
+                email: emailLogin,
+                password: passwordLogin
+            });
     
+            alert("Login successful!");
+           
+            if(response.data.message){
+                setLoginStatus(response.data.message);
+            }
+            else{
+                setLoginStatus(response.data[0].email);
+            }
+    
+        } catch (error) {
+            console.error("Log in error", error.response?.data || error.message);
+            alert(error.response?.data?.error || "Login error. Please try again.");
+        }
+    }
+
+
+
+
     return(
         <div>
             <div className='login'>
@@ -67,15 +147,26 @@ export default function Login(){
 
                         <form className='inputs'>
                             
-                            <input type="text" name="email" placeholder="Email"></input>
+                            <input type="text" name="email" placeholder="Email"  
+                                onChange={(e) => {
+                                    setEmailLogin(e.target.value)
+                                }}>
 
-                            <input type="text" name="password" placeholder="Password"></input>
+                            </input>
 
-                            <input type="login" value="Login" readOnly></input>
+                            <input type="password" name="password" placeholder="Password" 
+                                onChange={(e) => {
+                                    setPasswordLogin(e.target.value)
+                            }}>
+                            </input>
+
+                            <input onClick={log} type="login" value="Login" readOnly></input>
 
                             <div className="signUp" onClick={showSignUpBar}>
                                 Don't have an account? Sign Up!
                             </div>
+
+                            <h1>{loginStatus}</h1>
                         </form>
                     </div>
                 </ul>
@@ -94,27 +185,56 @@ export default function Login(){
 
                         <form className='inputs'>
                      
-                            <input type="text" name="name" placeholder="Name" />
+                            <input type="text" name="name" placeholder="Name" 
+                                onChange={(e) => {
+                                    setNameRegister(e.target.value)
+                                }}
+                            />
 
 
-                            <input type="text" name="surname" placeholder="Surname" />
+                            <input type="text" name="surname" placeholder="Surname" 
+                                onChange={(e) => {
+                                    setSurnameRegister(e.target.value)
+                                }}
+                            />
 
             
-                            <input type="text" name="age" placeholder="Age" />
+                            <input type="text" name="age" placeholder="Age" 
+                                onChange={(e) => {
+                                    setAgeRegister(e.target.value)
+                                }}
+                            />
 
                          
-                            <input type="text" name="address" placeholder="Address" />
+                            <input type="text" name="address" placeholder="Address" 
+                                onChange={(e) => {
+                                    setAddressRegister(e.target.value)
+                                }}
+                            />
 
                            
-                            <input type="text" name="number" placeholder="Phone Number" />
+                            <input type="text" name="number" placeholder="Phone Number"
+                                onChange={(e) => {
+                                    setPhoneRegister(e.target.value)
+                                }}
+                            
+                            />
 
                            
-                            <input type="text" name="email" placeholder="Email" />
+                            <input type="text" name="email" placeholder="Email" 
+                                onChange={(e) => {
+                                    setEmailRegister(e.target.value)
+                                }}
+                            />
 
                       
-                            <input type="password" name="password" placeholder="Password" />
+                            <input type="password" name="password" placeholder="Password" 
+                                onChange={(e) => {
+                                    setPasswordRegister(e.target.value)
+                                }}
+                            />
 
-                            <input type="signup" value="SignUp" readOnly></input>
+                            <input onClick={register} type="signup" value="SignUp" readOnly></input>
 
                             <div className="signUp" onClick={showLoginBar}>
                                 Already have an account? Log In!
