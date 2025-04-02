@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import {Slider} from "./components/slider/slider"
 import {slides} from "./slider_slides.json";
-import Bag from "./components/product/product.js"
+import Bag from "./components/bag/product.js"
 import Search from "./components/search/search.js"
 import {SearchResultsList }from "./components/search/search_results_list"
 import Login from "./components/log_in/login.js"
@@ -33,15 +33,19 @@ export default function Home() {
   );
 }
 
-//Log in:
-//when loged in, login feature is not visible, only logout.
-//when user logged in, there should be option to view/change user info
-//sanitize user input when signing up
-//when new user signs up or logs in, modal window disapears.
-//when user signs up it must be automatically loged in.
 
-//Bag: add products to the bag, view bag, checkout
+//Bag:
 //when product added to the bag, there is number on a bag that represents number of products inside it
+//create order db
+//add to bug button adds product to the bag
+//click on bag shows a window with all products inside
+//checkout button in window opens window to order the product
+
+//Log in:
+//now save works only with entering email, fix that
+//sanitize user input when signing up
+//login status info for user
+
 
 //For Artist:
 // for each artis page before products: big picture of them

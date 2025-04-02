@@ -1,6 +1,7 @@
 import pool from "../../src/app/utils/postgres"; 
 
 export default async function handler(req, res) {
+
       if (req.method !== "POST") {
         return res.status(405).json({ error: "Method Not Allowed" });
       }
@@ -20,8 +21,9 @@ export default async function handler(req, res) {
         const values = [email, password];
         const result = await client.query(queryText, values);
 
+
         if (result.rows.length > 0) {
-            res.status(200).json({ message: "Successful login", data: result.rows[0]});            res.send(result);
+            res.status(200).json({ message: "Successful login", data: result.rows[0]});        
           } else {
             res.status(401).json({ error: "Wrong username or password" });
           }

@@ -14,20 +14,42 @@ import axios from "axios";
 export default function Login(){
 
     const [loginBar, setLoginBar] = useState(false);
+    const [logoutBar, setLogoutBar] = useState(false);
     const [signUpBar, setSignUpBar] = useState(false);
+      
+    const [isLogged, setIsLogged] = useState(false); 
+    //console.log(`is logged: ${isLogged}`);
+
+     
+   const [currLoggedName, setCurrLoggedName] = useState("");
+   const [currLoggedSurname, setCurrLoggedSurname] = useState("");
+   const [currLoggedAddress, setCurrLoggedAddress] = useState("");
+   const [currLoggedPhone, setCurrLoggedPhone] = useState("");
+   const [currLoggedEmail, setCurrLoggedEmail] = useState("");
+   const [currLoggedAge, setCurrLoggedAge] = useState("");
+   const [currLoggedPassword, setCurrLoggedPassword] = useState("");
+                               
 
     const showLoginBar = () => {
         setLoginBar(!loginBar);
+        setSignUpBar(false);
+        setLogoutBar(false);
+    };
+
+    const showLogoutBar = () => {
+        setLogoutBar(!logoutBar);
+        setLoginBar(false); 
         setSignUpBar(false);
     };
 
     const showSignUpBar = () => {
         setSignUpBar(!signUpBar);
         setLoginBar(false); 
+        setLogoutBar(false);
     };
 
     useEffect (() =>{
-        if(loginBar || signUpBar){
+        if(loginBar || signUpBar || logoutBar){
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden'; 
             document.body.style.height = '100%';  
@@ -48,6 +70,7 @@ export default function Login(){
     const [ageRegister, setAgeRegister] = useState('');
     const [addressRegister, setAddressRegister] = useState('');
     const [phoneRegister, setPhoneRegister] = useState('');
+ 
 
 
     const register = async () => {
@@ -68,6 +91,20 @@ export default function Login(){
             });
 
             alert("Registration successful!");
+            showSignUpBar();
+            setIsLogged(true);
+            //console.log(`is logged: ${isLogged} after registrtion`);
+
+            const data = response.data;
+             
+            setCurrLoggedName(data.data.cust_name)
+            setCurrLoggedSurname(data.data.cust_surname)
+            setCurrLoggedAddress(data.data.cust_address)
+            setCurrLoggedAge(data.data.cust_age)
+            setCurrLoggedPhone(data.data.cust_phone)
+            setCurrLoggedEmail(data.data.cust_email)
+            setCurrLoggedPassword(data.data.cust_password)
+            
         
             setNameRegister('');
             setSurnameRegister('');
@@ -84,7 +121,6 @@ export default function Login(){
 
     }
 
-
     const [emailLogin, setEmailLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState(''); 
 
@@ -97,24 +133,81 @@ export default function Login(){
         }
 
         try {
-            await axios.post("/api/login", {
+            const response = await axios.post("/api/login", {
                 email: emailLogin,
                 password: passwordLogin
             });
     
             alert("Login successful!");
+            showLoginBar();
+            setIsLogged(!isLogged);
+            console.log(`is logged: ${isLogged} after login`);
+            
+            if (!response || !response.data) {
+                throw new Error("No data received from server");
+            }
+
+            const data = response.data;
+            console.log("DATA RETURNED:", data);
+            //console.log("DATA RETURNED:", data.data.cust_name);
+            
+            setCurrLoggedName(data.data.cust_name)
+            setCurrLoggedSurname(data.data.cust_surname)
+            setCurrLoggedAddress(data.data.cust_address)
+            setCurrLoggedAge(data.data.cust_age)
+            setCurrLoggedPhone(data.data.cust_phone)
+            setCurrLoggedEmail(data.data.cust_email)
+            setCurrLoggedPassword(data.data.cust_password)
            
             if(response.data.message){
                 setLoginStatus(response.data.message);
             }
             else{
                 setLoginStatus(response.data[0].email);
-            }
+            } 
+            
     
         } catch (error) {
             console.error("Log in error", error.response?.data || error.message);
             alert(error.response?.data?.error || "Login error. Please try again.");
         }
+    }
+
+    const logout = async() =>{
+        showLogoutBar();
+        setIsLogged(false);
+        //console.log(`is logged: ${isLogged} after logout`);
+    }
+
+
+
+    const save = async() =>{
+
+        try{
+
+            const response =  await axios.put('/api/save', {
+                name: nameRegister,
+                surname: surnameRegister,
+                age: parseInt(ageRegister),
+                address: addressRegister,
+                phone: phoneRegister,
+                email: emailRegister,
+                password: passwordRegister
+            });
+
+            const data = response.data;
+            console.log("DATA RETURNED:", data);
+            setCurrLoggedName(data.data.cust_name)
+            setCurrLoggedSurname(data.data.cust_surname)
+            setCurrLoggedAddress(data.data.cust_address)
+            setCurrLoggedAge(data.data.cust_age)
+            setCurrLoggedPhone(data.data.cust_phone)
+            setCurrLoggedEmail(data.data.cust_email)
+            setCurrLoggedPassword(data.data.cust_password)
+        }catch(error){ 
+            console.error("Saving error", error.response?.data || error.message);
+        }
+
     }
 
 
@@ -123,8 +216,8 @@ export default function Login(){
     return(
         <div>
             <div className='login'>
-                <SlUserFemale className="UserIcon" onClick={showLoginBar}></SlUserFemale>
-                <p className="TextLog"> Log in</p>
+                <SlUserFemale className="UserIcon" onClick={!isLogged ? showLoginBar : showLogoutBar}></SlUserFemale>
+                <p className="TextLog"> Account</p>
             </div>
 
             {loginBar && <div className="overlay" onClick={showLoginBar}></div>}
@@ -160,7 +253,7 @@ export default function Login(){
                             }}>
                             </input>
 
-                            <input onClick={log} type="login" value="Login" readOnly></input>
+                            <input onClick={log } type="login" value="Login" readOnly></input>
 
                             <div className="signUp" onClick={showSignUpBar}>
                                 Don't have an account? Sign Up!
@@ -171,6 +264,86 @@ export default function Login(){
                     </div>
                 </ul>
             </nav>
+
+
+
+            <nav className={logoutBar ? 'lnav-logout active' : 'lnav-logout'}>
+                <ul className="lnav-logout-items" onCanPlay={showLogoutBar}>
+
+                <li className="lnavbar-logout-toggle">
+                        <SlClose className="LogoutIconCross" size={30} onClick={showLogoutBar} />
+                    </li>
+
+                    <div className='logout-container'>
+
+                        <div className="header">
+                            <div className='logout-text'>My Account</div>
+                        </div>
+
+
+                        <div className='dataList'>
+                            <p className='edit-text'>View/Edit your data:</p>
+
+                            <input type="text" name="name" placeholder={currLoggedName}
+                                onChange={(e) => {
+                                    setNameRegister(e.target.value)
+                                }}
+                            />
+
+
+                            <input type="text" name="surname" placeholder={currLoggedSurname}
+                                onChange={(e) => {
+                                    setSurnameRegister(e.target.value)
+                                }}
+                            />
+
+            
+                            <input type="text" name="age" placeholder={currLoggedAge}
+                                onChange={(e) => {
+                                    setAgeRegister(e.target.value)
+                                }}
+                            />
+
+                         
+                            <input type="text" name="address" placeholder={currLoggedAddress}
+                                onChange={(e) => {
+                                    setAddressRegister(e.target.value)
+                                }}
+                            />
+
+                           
+                            <input type="text" name="number" placeholder={currLoggedPhone}
+                                onChange={(e) => {
+                                    setPhoneRegister(e.target.value)
+                                }}
+                            
+                            />
+
+                           
+                            <input type="text" name="email" placeholder={currLoggedEmail}
+                                onChange={(e) => {
+                                    setEmailRegister(e.target.value)
+                                }}
+                            />
+
+                      
+                            <input type="password" name="password" placeholder={currLoggedPassword}
+                                onChange={(e) => {
+                                    setPasswordRegister(e.target.value)
+                                }}
+                            />
+                            
+                        </div>
+
+                        <button onClick={save} className="save" type="button" >Save</button>
+                        <button onClick={logout} className="logout" type="button">Logout</button>
+                    </div>    
+                </ul>
+            </nav>
+
+
+
+
 
             <nav className={signUpBar ? 'snav-sign active': 'snav-sign'}>
                 <ul className="snav-sign-items">

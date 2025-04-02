@@ -10,17 +10,26 @@
 .TextLog{
     position: absolute;
     font-family: Garamond, serif;
-    right:45px;
+    right:40px;
     top: 12%;
     font-size: 15px;
 }
 
-.login-text{
+.login-text, .logout-text{
   top:30px;
   text-align: center;
   position: relative;
   font-family: Garamond, serif;
   font-size: 35px;
+  color:white;
+}
+
+.edit-text{
+  top:35px;
+  left:25px;
+  position: relative;
+  font-family: Garamond, serif;
+  font-size: 25px;
   color:white;
 }
 
@@ -60,6 +69,30 @@ input[type="login"], [type="signup"]{
   margin-left:80px;
 }
 
+button.save, button.logout {
+  font-family: Garamond, serif;
+  font-size: 25px;
+  position: relative;
+  top: 40px;
+  text-align: center;
+  background-color: #8E7D8E;
+  color: white;
+  padding: 14px 20px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 200px;
+}
+
+button.save {
+  margin-left: 20px;
+}
+
+button.logout {
+  margin-left: 60px;
+}
+
 input[type="login"]{
   width: 50%;
 }
@@ -68,6 +101,9 @@ input[type="signup"]{
   width: 60%;
 }
 
+input[type="logout"]{
+  width: 50%;
+}
  
 nav {
   position: fixed;
@@ -109,8 +145,13 @@ nav.active {
   height: 750px;  
 }
 
+.lnav-logout {
+  width: 550px;  
+  height: 750px;  
+}
 
-.LoginIconCross, .SignIconCross {
+
+.LoginIconCross, .SignIconCross, .LoginIconCross {
   position: absolute;
   top: 15px;
   right: 15px;
